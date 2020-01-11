@@ -1,0 +1,14 @@
+{
+  "name": "sq-client-api",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "@bugsnag/js": "^6.4.0",
+    "aws-sdk": "^2.446.0",
+    "axios": "^0.19.0",
+    "uuid-v4": "0.1.0"
+  },
+  "devDependencies": {}
+}
