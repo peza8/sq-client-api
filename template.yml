@@ -16,6 +16,9 @@ Resources:
       MemorySize: 512
       Timeout: 30
       Role: 'arn:aws:iam::896967300943:role/service-role/sqClientAPI-role-ggfgd6jv'
+      Environment:
+        Variables:
+          SQ_REGION: 'eu-west-1'
       Events:
         Api1:
           Type: Api

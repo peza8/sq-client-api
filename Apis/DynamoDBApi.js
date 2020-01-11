@@ -6,6 +6,7 @@
  */
 
 const AWS = require("aws-sdk");
+AWS.config.update({ region: process.env.SQ_REGION });
 let docClient = new AWS.DynamoDB.DocumentClient();
 
 class DynamoDBInterface {}
