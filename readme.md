@@ -1,4 +1,4 @@
-# GDoor Sensor Backend
+# SelfQuants 2.0 Client API
 ---
 
 This project contains an AWS Lambda function implemented in the Node.js runtime. 
@@ -18,8 +18,7 @@ It serves clients of the service - mobile and other.
 
 **To deploy new code:**
 
- 1. Upload a zipped file of the repo to the S3 bucket: *sensesir-code-store* | Recommend using CLI: `$ aws s3 cp local_file.zip s3://sensesir-code-store/client-api/`
- 2. Or for production: `$ aws s3 cp local_file-prod.zip s3://sensesir-code-store-prod/client-api/`
+ 1. Upload a zipped file of the repo to the S3 bucket: *sensesir-code-store* | Recommend using CLI: `$ aws s3 cp local_file.zip s3://self-quants-code-store/client-api/`
  3. In the Lambda management console, navigate to the *GDoorClientAPI* function
  4. In the *Function code* section, use the `Code entry type` dropdown to select *"Upload a file from Amazon S3"*
  5. Click Save in the top right hand corner - this will 'deploy' the new code

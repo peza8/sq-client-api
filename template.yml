@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >-
+  A simple backend (read/write to DynamoDB) with a RESTful API endpoint using
+  Amazon API Gateway.
+Resources:
+  sqClientAPI:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs8.10
+      CodeUri: .
+      Description: >-
+        A simple backend (read/write to DynamoDB) with a RESTful API endpoint
+        using Amazon API Gateway.
+      MemorySize: 512
+      Timeout: 30
+      Role: 'arn:aws:iam::896967300943:role/service-role/sqClientAPI-role-ggfgd6jv'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /log-event
+            Method: POST
+      Tags:
+        'lambda-console:blueprint': microservice-http-endpoint
