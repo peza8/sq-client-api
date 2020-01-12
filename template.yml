@@ -19,6 +19,7 @@ Resources:
       Environment:
         Variables:
           SQ_REGION: 'eu-west-1'
+          BUGSNAG_API_KEY: 83148fee6ca14042f4ce9ab9810b09d1
       Events:
         Api1:
           Type: Api

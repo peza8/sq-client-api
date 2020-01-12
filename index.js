@@ -6,6 +6,13 @@
  * Created: 01/11/2020
  */
 
+const packageInfo = require('./package.json');
+let bugsnag = require('@bugsnag/js');
+let bugsnagClient = bugsnag({
+    apiKey: process.env.BUGSNAG_API_KEY,
+    appVersion: packageInfo.version
+});
+
 const Constants = require('./Config/Constants');
 const ClientApi = require('./Apis/ClientApi');
 
@@ -15,7 +22,7 @@ exports.handler = async (event) => {
         return res;
     } 
     catch(error) {
-        // await reportErrorBugsnag(error);
+        await reportErrorBugsnag(error);
         console.error(error);
         return {
             statusCode: 500,
@@ -39,4 +46,17 @@ const routeRequest = async (request) => {
     else {
         throw new Error(`INDEX: Unknown path for request => ${path}`);
     }
+}
+
+
+const reportErrorBugsnag = (error) => {
+    return new Promise(resolve => {
+        console.log("INDEX: Logging error in Bugsnag");
+        bugsnagClient.notify(error);
+        
+        // Bugsnag - takes a while to report (ensure program doesn't terminate)
+        setTimeout(() => {
+            resolve(true);
+        }, 2500);
+    });    
 }

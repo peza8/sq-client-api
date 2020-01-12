@@ -6,10 +6,8 @@
  * Created: 04/18/2019
  */
 
-const axios = require('axios');
 const Constants = require('../Config/Constants');
 const DynamoDBApi = require('./DynamoDBApi');
-const UUID = require('uuid-v4');
 const SQEvent = require('../Models/SQEvent');
 
 module.exports = {  
@@ -32,5 +30,9 @@ module.exports = {
             } 
         }
         else { return result };
+    },
+
+    getEvent: async (eventUID) => {
+
     }
 }
