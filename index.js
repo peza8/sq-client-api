@@ -43,6 +43,16 @@ const routeRequest = async (request) => {
         return result;
     }
 
+    else if (path === Constants.ENDPOINT_GET_EVENT_SINGLE) {
+        let result = await ClientApi.getEvent(payload);
+        return result;
+    }
+
+    else if (path === Constants.ENDPOINT_GET_EVENT_RANGE) {
+        let result = await ClientApi.getEventsInRange(payload);
+        return result;
+    }
+
     else {
         throw new Error(`INDEX: Unknown path for request => ${path}`);
     }

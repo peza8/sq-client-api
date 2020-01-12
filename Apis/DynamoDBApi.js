@@ -81,6 +81,17 @@ DynamoDBInterface.query = (identifiers) => {
     });
 };
 
+DynamoDBInterface.scan = (identifiers) => {
+    return new Promise((resolve, reject) => {
+        docClient.scan(identifiers, (error, data) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(data.Items);
+        });
+    });
+}
+
 DynamoDBInterface.searchForItem = async (tableName, index, searchKey, searchValue) => {
     const searchParams = {
         TableName: tableName,
@@ -94,6 +105,23 @@ DynamoDBInterface.searchForItem = async (tableName, index, searchKey, searchValu
 
     let items = await DynamoDBInterface.query(searchParams);
     return items;
+};
+
+DynamoDBInterface.scanForRange = async (tableName, searchLow, searchHigh) => {
+    const searchParams = {
+        TableName: tableName,
+        // IndexName: index, 
+        FilterExpression: `#ts BETWEEN :value_low and :value_high`,
+        ExpressionAttributeValues: {
+            ":value_low": searchLow,
+            ":value_high": searchHigh
+        },
+        ExpressionAttributeNames: { "#ts": "timestamp" },
+        // May need ProjectionExpression {}
+    };
+
+    let events = await DynamoDBInterface.scan(searchParams);
+    return events;
 };
 
 module.exports = DynamoDBInterface;
